@@ -128,7 +128,68 @@ A los usuarios o grupos podemos asignarles documentos JSON que son "politicas", 
 
 *Podemos asociar una politica a un grupo y asi todos los usuarios de ese grupo tienen los mismo permisos 
 *Roles : Podemos crear ROLES que tienen permisos asociados que permiten o deniegan acciones especificas, estos
- 	los asumen durante un periodo te tiempo limitado, no tienen nombre de usuario ni contraseña 
+ 	los asumen durante un periodo te tiempo limitado, no tienen nombre de usuario ni contraseña
+
+**
+>>>>> Ataques de denegacion de servicios distribuido DDoS / Disttributed denial-of-service
+Es un intento deliberado de hacer que un sitio web o una aplicación no estén disponibles para los usuarios.
+El objetivo del ataque es anular la capacidad de funcionar de su aplicacion por medio de saturar el sistema
+	al punto que no pueda operar mas 
+El atacante intenta saturar la capacidad de sua app para denegar sus serviciosa cualquier person, el ataque
+ desde una maquina no es suficiente, el atacante aprovecha otras maquinas en internet para tocar a su infraestructura
+ La idea principal es que el comandante del ataque haga el menor trabajo posible, y que la victima sea
+ objeto de una carga de trabajo insoportable de procesar 
+
+Ataques especificos
+>>> Inundacion UDP
+EJ:	Cualquiera que pueda enviar una solicitud al sistema meteorologico recibira como respuesta una cantidad
+	grande de datos, aqui el ataque es simple el atacante envia una solicitud como el pronostico del tiempo
+	pero da una direccion de retorno falsa como una nuestra, entonces todas la respuestas/info/datos inunda
+	nuestro servidor y paraliza el sistema al tratar de recibir una info que nunca solicito 
+	*Ataque de bajo nivel diseñado para agotar la red
+**Solucion: Los grupos de seguridad solo permiten el trafico entrarte de solicitudes autorizadas, el protocolo
+	meteorologico es distinto al habitual, entonces si no esta en la lista de entrada no se puede comunicar con el servidor 
+
+>>> Ataques a nivel HTTP
+	Parecen cliente normales con solicitudes normales, todas proenientes de un ejercito de quipos, demandan tanta
+	atencion que los clientes habituales no pueden entrar, intentan trucos como el siguiente ataque:
+>>> Ataque Slowloris
+	El atacante finge tener una conexion lenta y la  solicitud al servidor se hace larguisima y la fila no puede avanzar 
+	Pueden agotar la capacidad de todo un frontend sin esfuerzo
+**Solucion: Elastic Load Balancer espera recibir la solicitud completa antes de hacerla llegar al servidor, puede interntar
+	saturarlo pero es escalable 
+
+***Para ataques mas audaces/sofisticado:
+Aws tiene herramientas de defensa 
+
+>>>>>>>>>>> AWS WAF <<<<<<<<<< ????????????????????????????????????????
+es un firewall de aplicaciones web que le permite monitorear las solicitudes de red que llegan a las aplicaciones web. 
+AWS WAF funciona de forma similar para bloquear o permitir el tráfico. Sin embargo, lo hace mediante una lista de control de acceso (ACL)
+	web para proteger sus recursos de AWS. 
+
+>>>>>>>>>>> AWS SHIELD <<<<<<<<<< : ESCUDO
+Servicio que PROTEGE las aplicaciones DDoS
+Proporciona una mitigación en línea automática y una detección siempre activa que minimizan el tiempo de inactividad y la latencia de la
+	 aplicación, por lo que no es necesario disponer de AWS Support para beneficiarse de la protección contra DDoS.
+Dos niveles : Standard / Advanced 
+
+>>AWS Shield Standard 
+	SIN COSTO Protege automaticamente a todos los clientes de aws de ataques Ddos
+	AWS Shield Standard utiliza diversas técnicas de análisis para detectar el tráfico malicioso en tiempo real y mitigarlo automáticamente.
+
+>> AWS Shield Advanced 
+	DE PAGO servicio que proporciona DIAGNOSTICO DETALLADO de ataques y la capacidad de detectar y mitigar ataques DDoS
+
+
+** puede integrar AWS Shield con AWS WAF escribiendo reglas personalizadas para mitigar los ataques DDoS complejos
+https://aws.amazon.com/es/shield/?whats-new-cards.sort-by=item.additionalFields.postDateTime&whats-new-cards.sort-order=desc
+
+>>>>>> AWS SHIELD / AWS WAF <<<<< ???????????????????????????????????????????
+aws waf usa un firewall para app web para filtrar el trafico entrante, cuenta con capacidades de aprendizaje automatico y puede
+reconocer nuevas amenazas a medida que evoluciona y ayuda a defender a su sistema de forma proactiva 
+
+
+
 ~~~
 
 ~~~
@@ -183,4 +244,27 @@ Amazon S3 (Simple Storage Service)
 Amazon EBS (Elastic Block Store)
 Amazon Glacier
 Amazon EFS (Elastic File System)
+~~~
+
+### Conformidad 
+~~~
+>>>>> Conformidad
+Cada industria tiene estandares que deben cumplirse, se realizan auditorias para validar que se cumplieron los estandes 
+EJEMPLO:
+	Si utilizamos sofwate que trata con datos  de consumidores de la union europea debemos asegurarnos de que cumplimos con el
+		Reglamento General de Proteccion de Datos (GDPR)
+	Si utilizamos app del sector de sanidad de eeuu, hay que diseñar la arquitetcura para que cumpla con los requisitos de HIPAA
+		Health Insurance Portability and Accountability Act
+
+AWS ya creo la infraestructura de centros de datos y de redes con las practicas recomendadas de seguridad de la industria
+Como cliente heredamos todas las practicas recomendadas de aws 
+
+La region puede ayudarnos a cumplir con normas de conformidad 
+Ej:si solo puede almacenar datos en su pais, puede elegir una region apropiada y aws no replicara automaticamente en otras regiones 
+*El cliente es propietario de los datos y es SU reponsabilidad proteger los datos , hay varios mecanismos de seguridad 
+Para habilitar la proteccion de datos en muchos servicios es parte de la configuracion que tiene que gestionar en el recurso
+
+AWS puede proporcionales documentacion que demuestre que sigue las practicas recomendadas de seguridad y conformidad
+	podemos acceder a estos documentos en el servicio AWS Artifact, aqui puede tener acceso a informes de conformidad
+	realizados por terceros que han validado una amplia gama de estandares de conformidad "Centro de Conformidad de AWS" para info 
 ~~~
