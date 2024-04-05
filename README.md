@@ -1,14 +1,5 @@
 # cloud_computing
 
-#### CLIENTE-SERVIDOR
-~~~
-Un CLIENTE puede ser un navegador web o una app de escritorio, con la que interactua una persona para realizar
-	solicitudes a los servidores de computo un cliente solicita un articulo de noticias, puntuacion de un juego,etc
-Un SERVIDOR puede ser un servicio como Amazon Elastic Compute Cloud (Amazon EC2), un tipo de servidor virtual.
-	el servidor evalua los detalles de la solicitud y la cumple al devolver la informacion del cliente
-		*Es un aparato informático que almacena, distribuye y suministra información
-~~~
-
 #### CLOUD 
 ~~~
 ***Recursos TI : software y hadware utilizados para : almacenamiento, cómputo, redes,
@@ -74,3 +65,66 @@ BENEFICIOS / VENTAJAS
 	Le permite implementar rápidamente aplicaciones a clientes de todo el mundo, a la vez que les proporciona una
 		 latencia baja utilizando la infraestructura global 
 ~~~
+~~~
+>>>Modelo de responsabilidad compartida 
+
+CLIENTE, responsable de la seguridad EN la nube 
+	Son responsable de todo lo que crean y almacenan en la nube 
+		controla cómo se conceden, administran y revocan los derechos de acceso.
+	Capas a cargo : SISTEMA OPERATIVO / APLICACIONES / DATOS
+
+AWS, responsable de la seguridad DE la nube
+	Aws opera, administra y controla los componentes en todos los niveles de la infraestructura.
+	Capas a cargo : FISICO / RED / HIPERVISOR 
+	
+
+Al crear una cuenta en AWs, se recibe el usuario ROOT/RAIZ de la cuenta, quien es el propietario y tiene acceso 
+	y control de cualquier recurso de la cuenta 
+*Se recomienda activar la autenticacion multi-factor (MFA) para que al iniciar sesion deba ingresar
+	correo, contraseña y un token aleatorio
+*No utilice el usuario raíz para las tareas cotidianas. 
+Tareas que requieren el uso de credenciales de usuario ROOT 
+	Cambiar el plan de soporte de AWS
+	Eliminar cuentas de AWs 
+
+		Para controlar el acceso a la cuenta:
+>>>>>>>>>> AWS Identify and Access Management AWS IAM <<<<<<<<<<< SERVICIO GLOBAL
+IAM -> Autenticacion y autorizacion como servicio, permite administrar el acceso a los servicios y recursos de AWS de forma segura.
+
+*Root , se crea por defecto, debe ocupar root solo para fines especificos 
+*Users, son personas parte de la organizacion , estas se pueden organizar en grupos
+*Gruops, conjunto de usuarios, solo contiene users , no otros grupos(sirve para facilitar la administracion)
+POR QUE CREAMOS USUARIOS/GRUPOS? 
+A los usuarios o grupos podemos asignarles documentos JSON que son "politicas", estas politicas definen los permisosque tendran esos users, de forma predeterminada se deniegan todos los permiso, explicitamente hay que
+	darle permisos para que puedan acceder a los recursos (PRINCIPIO DE MENOR PRIVILEGIO: un usuario solo tiene acceso a lo que realmente necesita)
+
+>>> Politicas de IAM -> es un documento JSON que describe que llamadas a la API un usuario puede o no hacer 
+			documento que permite o deniega permisos para los servicios y recursos de AWS 
+	ej1:
+	"Version": "2012-10-17", (version de la politica)
+	"Id": "S3-Account-Permissions", (identificador de la politica)
+	"Statement":[  (declaraciones)
+		"Sid": "1" (id),
+		"Effect" :"Allow" / "Deny"  (le da acceso o deniega el permiso)
+	]	"Principal":{
+			"AWS": ["arn:aws:iam::123456789012:root/*"] (  a que cuenta, usuario o rol se aplicara esta politica )
+			}
+		"Action":[   (lista de llamadas a la APi que se permitiran segun el efecto )
+			"s3:GetObject",
+			"s3:PutObject"
+		],
+		"Resource":  (lista de recursos a los que se aplicaran las acciones )
+			["arn:aws:s3:::mybucket/*"]
+		
+	
+
+	ej2:
+	Effect : "Allow"
+	Action : "s3:ListObject"
+	Resource : "arn:aws:s3:::coffee_shop_reports" 
+	*En este ejemplo de política de IAM se concede permiso para acceder a los objetos del bucket
+
+*Podemos asociar una politica a un grupo y asi todos los usuarios de ese grupo tienen los mismo permisos 
+*Roles : Podemos crear ROLES que tienen permisos asociados que permiten o deniegan acciones especificas, estos
+ 	los asumen durante un periodo te tiempo limitado, no tienen nombre de usuario ni contraseña 
+
