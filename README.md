@@ -65,6 +65,8 @@ BENEFICIOS / VENTAJAS
 	Le permite implementar rápidamente aplicaciones a clientes de todo el mundo, a la vez que les proporciona una
 		 latencia baja utilizando la infraestructura global 
 ~~~
+#### AWS Identify and Access Management AWS IAM (Politicas de IAM)/ AWS Organizations ( Politicas de control de servicios (SCPs) )/ AWS Artifact 
+#### AWS SHIELD / AWS WAF / AWS Key Management Services (AWS KMS)  / Amazon Inspector / Amazon GuardDuty 
 ~~~
 >>>Modelo de responsabilidad compartida 
 
