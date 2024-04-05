@@ -65,8 +65,8 @@ BENEFICIOS / VENTAJAS
 	Le permite implementar rápidamente aplicaciones a clientes de todo el mundo, a la vez que les proporciona una
 		 latencia baja utilizando la infraestructura global 
 ~~~
-#### AWS Identify and Access Management AWS IAM (Politicas de IAM)/ AWS Organizations ( Politicas de control de servicios (SCPs) )/ AWS Artifact 
-#### AWS SHIELD / AWS WAF / AWS Key Management Services (AWS KMS)  / Amazon Inspector / Amazon GuardDuty 
+#### AWS Identify and Access Management AWS IAM (Politicas de IAM)/ AWS Organizations ( Politicas de control de servicios (SCPs) )
+#### AWS SHIELD / AWS WAF / AWS Key Management Services (AWS KMS)  
 ~~~
 >>>Modelo de responsabilidad compartida 
 
@@ -129,4 +129,58 @@ A los usuarios o grupos podemos asignarles documentos JSON que son "politicas", 
 *Podemos asociar una politica a un grupo y asi todos los usuarios de ese grupo tienen los mismo permisos 
 *Roles : Podemos crear ROLES que tienen permisos asociados que permiten o deniegan acciones especificas, estos
  	los asumen durante un periodo te tiempo limitado, no tienen nombre de usuario ni contraseña 
+~~~
 
+~~~
+¿Qué es la computación en la nube? 
+La computación en la nube es la entrega  bajo demanda de recursos de TI en línea, con precios de pago por uso
+
+Tres modelos de computación en la nube
+	Infraestructura como servicio (IaaS) : el proveedor de la nube ejecuta el  hardware  y el software de virtualización . Usted aprovisiona y administra sus servidores virtuales y todo el software que está instalado en ellos.
+
+	Plataforma como servicio (PaaS) : el proveedor de la nube ejecuta y administra el hardware , el software de virtualización y los servidores virtuales . Solo necesita implementar su aplicación y sus datos.
+
+	Software como servicio (SaaS ): el proveedor de la nube  ejecuta y administra todo , desde el hardware hasta la aplicación. Solo necesita suscribirse a la aplicación para usarla 
+
+~~~
+### Costos
+~~~
+>>>>>>>>>> Panel de facturacion/ Billing dashboard <<<<<<<<<< FACTURACION 
+Como va la facturacion de la cuenta ?
+>>> Bills :
+	Acceso a los servicios que estamos pagando (Facturacion)
+Gasto mensual hasta la fecha y los servicios utilizados 
+Grafico con montos de mes anterior, actuales y previstos del mes sig 
+Tabla con uso actual de la capa gratuita 
+*Para pagar la factura de AWS, monitorear el uso y analizar y controlar los costos.
+https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-what-is.html
+
+>>>Billing Consolidado:  AWS Organization 
+	Beneficios de usar AWS Organization es la facturacion consolidada, al final del mes puede unir 
+		la facturacion al propietario de la organizacion 
+	Simplifica el proceso de facturacion 
+	Compartir ahorros entre cuentas (descuentos por volumen)
+	Funcion billing gratuita 
+>>>>>>>>>> AWS Budgets <<<<<<<<<<<	PRESUPUESTOS PERSONALIZADOS PARA ESCENARIOS COSTO/USO 
+Presupuesto personalizados para escenarios de costos y uso
+Recibe notificacion de forma anticipada si va exceder el monto presupuestado de ese recurso 
+Puede crear presupuestos para planificar el uso del servicio, los costos de los servicios y las reservas de instancias.
+*Para personalizar un budgets debe establacer un monto y especificar un umbral por ej cuando se llegue a ocupa
+	el 80% y añadimos un email para que llegue la notificacion
+
+>>>>>>>>>> Cost Explorer <<<<<<<<<<<< OBSERVAR Y ANALIZAR COSTOS A LO LARGO DEL TIEMPO 
+Permite observar y analizar como gasta su dinero en aws a lo largo del tiempo
+*12 meses de gastos historicos para analizar y hacer seguimiento de los gastos (puedo agrupar por
+	 atributos, las etiquetas son utiles para filtrar )
+AWS Cost Explorer incluye un informe predeterminado de los costos y el uso de los cinco servicios de AWS de mayor costo acumulados. 
+*Puede crear  informes personalizados de costos y guardarlos para volver a revisarlos 
+https://aws.amazon.com/es/aws-cost-management/aws-cost-explorer/
+
+~~~
+### Servicios
+~~~
+Amazon S3 (Simple Storage Service)
+Amazon EBS (Elastic Block Store)
+Amazon Glacier
+Amazon EFS (Elastic File System)
+~~~
